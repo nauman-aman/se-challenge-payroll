@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Wave App Prototype</title>
+    	<!-- Twitter Bootstrap -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/type.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection" />
+				<!-- Charting CSS -->
+		<link rel="stylesheet" href="/nvd3/build/nv.d3.css">
+
+        <!-- 3rd party scripts -->
+        <script src="/angular/angular.js"></script>
+        <script src="/angular-route/angular-route.js"></script>
+        <script src="/angular-cookies/angular-cookies.js"></script>
+		<script src="/jquery/dist/jquery.js"></script>
+		<script src="/papaparse/papaparse.min.js"></script>
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+        <!-- UI file drop upload support -->
+		<script src="js/angular-file-upload-shim.js"  type="text/javascript" ></script>
+		<script src="js/angular-file-upload.js"  type="text/javascript" ></script>	
+        <!-- UI metrics charting -->
+		<script src="/d3/d3.js"></script>
+		<script src="/nvd3/build/nv.d3.js"></script>
+		<script src="/angular-nvd3/dist/angular-nvd3.js"></script>
+				
+        <!-- my scripts -->
+        <script src="js/app.js"  type="text/javascript" ></script>
+        <script src="js/ctrl.js" type="text/javascript" ></script>
+        <script src="js/srv.js" type="text/javascript" ></script>
+	</head>
+    
+	<body ng-app="waveDashboard" ng-controller="AppCtrl" >
+		<!-- HEADER AND NAVBAR -->
+		<header>
+		
+			<div class="topNav">
+				<div class="titleText">
+					Wave App Prototype
+				</div>
+				<div class="links">
+					<a href="#" ng-click="showWelcome = !showWelcome">
+						<div class="information-icon"></div>
+					</a>
+				</div>
+			</div>
+		</header>
+		<section class="information-box" ng-init="infoSelection = 'about'" ng-show="showWelcome">
+			<h2 class="information-header">Welcome</h2>
+			<a href="#" ng-click="showWelcome = !showWelcome">
+			    <svg class="information-box-closer" width="14px" height="14px" viewBox="0 0 14 14">
+					<path d="M12.7,0L14,1.3L8.3,7l5.7,5.7L12.7,14L7,8.3L1.3,14L0,12.7L5.7,7L0,1.3L1.3,0L7,5.7L12.7,0z"/>
+				</svg>
+			</a>
+		        <ul class="information-section-switcher">
+		            <li ng-click="infoSelection = 'about'; toggleTabVisibility($event);" class="information-box-tab-heading selected">About</li>
+		            <li ng-click="infoSelection = 'samples'; toggleTabVisibility($event);" class="information-box-tab-heading">Samples</li>
+		        </ul>
+		        <div ng-switch on="infoSelection">
+		            <div class="information-section" id="info-about" ng-switch-when="about">
+		                <p>Wave Accounting Prototype takes .csv file and generates a payroll report.</p>
+		                <div class="information-half">
+		                    <p class="information-section-title">To Get Started:</p>
+		                    <ul>
+		                        <li class="information-bullet">Create and upload a Time Sheet Report / .csv file. <a target="_blank" href="https://github.com/wvchallenges/se-challenge-payroll/blob/master/sample.csv">Click here to see a sample .csv file!</a></li>
+		                        <li class="information-bullet">Under 'Actions', view the generated payroll report for employees</li>
+		                    </ul>
+		                </div>
+		                <div class="information-half">
+		                    <p class="information-section-title">Resources:</p>
+		                    <ul>
+		                        <li class="information-bullet"><a target="_blank" href="https://github.com/wvchallenges/se-challenge-payroll">Full Requirement Documentation</a></li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <div class="information-section" id="info-samples" ng-switch-when="samples">
+		                
+		                <p>Below are some sample csv files for you to play with and test the Wave Accounting App.<br><small><em>
+							Please feel free to create your own csv files to play with as well.</em></small></p>
+		                <div class="information-half">
+		                    <p class="information-section-title">Time Sheets</p>
+		                    
+		                    <p>
+		                    	<strong><a href="file:///C:/Users/Nauman/Desktop/waveApp/public/samples/sample.csv" target="_blank">Sample1</a></strong> | 
+		                    	<strong><a href="file:///C:/Users/Nauman/Desktop/waveApp/public/samples/" target="_blank">Sample2</a></strong> |
+								<strong><a href="file:///C:/Users/Nauman/Desktop/waveApp/public/samples/" target="_blank">Sample3</a></strong>
+		                    </p>
+		                </div>
+		                <div class="information-half">
+		                    <p class="information-section-title">Additional Time Sheets</p>
+		                     <p>
+		                    	<strong><a href="file:///C:/Users/Nauman/Desktop/waveApp/public/samples/" target="_blank">Sample4</a></strong> | 
+		                    	<strong><a href="file:///C:/Users/Nauman/Desktop/waveApp/public/samples/" target="_blank">Sample5</a></strong>
+		                    </p>
+		                </div>
+		            </div>
+		        </div>
+		</section>
+		
+		<ng-view>
+		
+		</ng-view>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<div class="dlg">
+	<div class="title">
+		Deploy File For Payment Processing<div class="closeIcon" ng-click="cancel()"><img alt="" src="img/close.png" width="20px" height="20px">&nbsp;&nbsp;&nbsp;</div><br>
+	</div>
+	<div class="body">
+		<br>
+		Confirm the details before deploying file for payment processing.<br><br><br>
+		<!--<div class="boldText">
+			Report I.D.
+			<reqField>
+			*<br>
+			</reqField>
+		</div>-->
+		
+		<!--<input type="text" required name="reportID" ng-model="report.reportID" ng-change="checkUpload()" ng-trim="true" ng-keyup="$event.keyCode == 13 ? deploy() : null">-->
+		<div class="FileSelectionText">
+			Acquired ID from file
+		</div>
+		<div class="boldText">
+			Report ID: {{report.reportID}}*
+		</div>
+			
+			
+		<br><br>
+		<div class="FileSelectionText">
+			File to be used for payment processing<br>
+		</div>
+		{{report.name}}<br /><br><br>
+		<div class="section">
+			<button type="button" class="btn btn-cancel btn-link btn.xs" ng-click="cancel()">Cancel</button>
+			<button type="button" autofocus class="btn btn-dply btn.lg"  ng-disabled="disableUpload" ng-click="deploy()">&nbsp;&nbsp;Confirm&nbsp;&nbsp;</button>
+		</div>
+	</div>
+</div>
+

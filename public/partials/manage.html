@@ -1,0 +1,112 @@
+<div class="tab">
+	
+	<div class="titleDivider">
+		<div class="chartSide">
+			Payment Analysis
+		</div>
+		<div class="dragSide">
+			New Time Reports
+		</div>
+	</div>
+	<div class="combinedAreaChartDropzone">
+	
+		<div ng-show="showReportUsage" class="chartArea">
+		
+			<!-- Reports Deployed with Charting -->
+			<div ng-show="metrics.amountPaidToDate">	
+				<div class="chart-title">
+					{{ metrics.chartTitle }}
+				</div>
+			
+				<div>
+					<nvd3 options="scoringChartOpts" data="scoringChartData"></nvd3>
+				</div>
+			</div>
+		</div>
+		
+		<!-- No Reports Deployed -->
+		<div ng-show="showReportUsageFirstTime" class="chartArea" style="text-align: right; overflow: hidden; max-height: 300px">
+			<div class="chart-first-use-heading" style="padding-top: 35px;padding-right: 35px;">
+				Welcome to Wave App Prototype!
+			</div>
+			
+			<div style="float: left; padding-left: 35px;">
+				<img class="chart-first-use-donut"  src="/img/donut-first-time.png" />
+			</div>
+			
+			<div class="chart-first-use-subheading" style="padding-right: 35px;">
+				No Time Reports yet! Let's drag and drop<br />them to the box on the right
+				<!--Export your csv file, then drag and drop <br />them to the box on the right-->
+			</div>
+			
+			<!-- padding/spacing-top is 20px in html tag below... formula => 20px - 15px > 5px -->
+			<div style="float: right; padding-top: 5px; padding-right: 35px;">
+				<img class="chart-first-use-arrow" src="/img/arrow.png"
+					alt="Arrow pointing right" />
+			</div>
+				
+		</div>
+		
+		<!-- drop area for the file section-->
+		<div class="dropArea">
+			<div class="dropzone">
+				<div ng-class="dropBox" ng-file-drop ng-file-select ng-file-change="dropDeploy($files, $event)" ng-model="droppedFile" ng-accept="'.csv'" drag-over-class="dragover" ng-multiple="false">
+					<div class="insideTitle">
+						<img alt="" src="img/upload.png" width="25px" height="35px"><br>
+						Drop a Time Report file to process
+					</div>
+				</div>
+				<div class="subtitle">
+						or&nbsp;
+						<button type="button" class="btn btn-file btn.sm"  ng-file-select ng-file-change="dropDeploy($files, $event)" ng-model="droppedFile" ng-accept="'.csv'" drag-over-class="dragover" ng-multiple="false">Select File</button>	
+						&nbsp;to upload
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- reports meta data section -->
+	<div ng-show="showReportsTable">
+		<div class="titleTable">
+			Generated Payment Reports
+		</div>
+		<div class="tableSection">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Report ID</th>
+						<th>Date Processed</th>
+						<th>Employees</th>
+						<th>Amount Paid</th>
+						<th>Avg Pay/Person</th>
+						<th class="actionColumn">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="report in reports">
+						<td>{{report.reportID}}</td>
+						<td>{{report.processedOn}}</td>
+						<td>{{report.totalEmployees}}</td>
+						<td>${{report.totalPaid | number:2}}</td>
+						<td>${{report.totalPaid/report.totalEmployees | number:2}}</td>
+						<td class="tdAction">		
+							<div class="nav dropdown" style="">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									<button type="button" class="btn btn-gear btn.sm">
+										<div class="table-options-menu"></div>
+									</button>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right dropdown-menu-override">
+									<!--<li><a href="{{reportID}}" target="_blank" ng-click="onClickFileDownload($index)">Download</a></li>-->
+									<li><a href="#" ng-click="onClickGenerate($index)">View Report</a></li>
+									<!--<li><a href="#" ng-click="onClickDelete($index)">Delete</a></li>-->
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+		
+</div>

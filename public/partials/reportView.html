@@ -1,0 +1,35 @@
+<div class="dlg" style="width: 550px">
+	<div class="title">
+		View Payment Report Details<div class="closeIcon" ng-click="close()"><img alt="" src="img/close.png" width="20px" height="20px">&nbsp;&nbsp;&nbsp;</div><br>
+	</div>
+	<div class="body">
+		<br>
+		<div class="h3">
+		Report ID: {{report[0].reportID}}
+		</div>
+		<br>
+		<div class="tableSection">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Employee ID</th>
+						<th>Pay Period</th>
+						<th>Amount Paid</th
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in report">
+						<td>{{row.employeeID}}</td>
+						<td>{{row.payPeriodStart}} - {{row.payPeriodEnd}}</td>
+						<td>${{row.amountPaid  | number:2}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="section">
+
+			<button type="button" class="btn btn-dply btn.lg" ng-click="close()">&nbsp;&nbsp;Close&nbsp;&nbsp;</button>
+		</div>
+	</div>	
+</div>
